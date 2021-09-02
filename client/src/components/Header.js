@@ -23,12 +23,12 @@ const Header = () => {
 
   return (
     <HeaderStyled>
-      <h1>Contacts</h1>
+      <h1 id='title'>Contacts</h1>
 
       <nav>
         <ul className='nav-links'>
-          <li className='nav-link'><a href='/'>GitHub</a></li>
-          <li className='nav-link'><a href='/login' onClick={logout}>Logout</a></li>
+          <li className='nav-link'><a href='/'><i className="fab fa-github"></i>GitHub</a></li>
+          <li className='nav-link'><a href='/login' onClick={logout}><i className="fas fa-sign-out-alt"></i>Logout</a></li>
         </ul>
       </nav>
     </HeaderStyled>

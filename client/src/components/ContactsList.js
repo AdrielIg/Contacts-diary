@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useDebugValue, useState } from 'react'
 import Contact from './Contact'
 import ContactDetail from './ContactDetail'
+import ModalAdd from './ModalAdd'
 
 
 const ContactsList = (props) => {
   const [contactInfo, setContactInfo] = useState()
+  const [addContactModal, setAddContactModal] = useState(false)
 
   const getContactInfoHandler = async (e) => {
     const name = e.target.dataset.name
@@ -13,19 +15,33 @@ const ContactsList = (props) => {
     setContactInfo(contactData[0])
 
   }
-  console.log('SKERE', props.contacts)
-
-
-
   const contacts = props.contacts ? (props.contacts.map(contact => {
     return (
       <Contact key={contact._id} name={contact.name} number={contact.number} getUserInfo={getContactInfoHandler} />
     )
   })) : <p>No hay contactos</p>
 
+  const openModalHandler = () => {
+    setAddContactModal(true)
+    document.body.style.overflowY = 'hidden'
+
+
+  }
+  const closeModalHandler = () => {
+    setAddContactModal(false)
+    document.body.style.overflowY = 'visible'
+
+  }
+
+
+
   return (
     <div className='contacts-container'>
+      {addContactModal && <ModalAdd closeModal={closeModalHandler} />}
       <h2>Contact List</h2>
+      <div className='contacts-container-wrapper'>
+        <a href='#title' onClick={openModalHandler}><i className="fas fa-plus"></i>Add Contact</a>
+      </div>
       <div className='contact-list-wrapper'>
         <div className='contact-card Container Flipped'>
           {contacts}
@@ -38,6 +54,7 @@ const ContactsList = (props) => {
           <ContactDetail contact={contactInfo} />
         </div>
       </div>
+
 
 
 
