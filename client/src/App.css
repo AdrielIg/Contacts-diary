@@ -296,3 +296,46 @@ h1 {
   width: 3rem;
   margin-right: 0.2rem;
 }
+
+.detail-card {
+  margin-top: 2rem;
+}
+
+.detail-avatar {
+  width: 10rem;
+  border-radius: 50%;
+}
+.detail-icon {
+  font-size: 2.2rem;
+  color: green;
+}
+
+.detail-card h4 {
+  font-size: 2.6rem;
+  margin: 1rem 0 2rem;
+}
+
+.data-container {
+  border-bottom: 1px solid black;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto 2.2rem;
+}
+.data-container p {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* Icons */
+.fa-linkedin {
+  color: #0a66c2;
+}
+.fa-facebook-square {
+  color: #1156f5;
+}
+.fa-twitter-square {
+  color: #1d9bf0;
+}

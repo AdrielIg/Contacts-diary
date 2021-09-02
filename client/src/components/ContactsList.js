@@ -1,21 +1,23 @@
 import Contact from './Contact'
-
-
-
-
-
+import ContactDetail from './ContactDetail'
 
 
 const contactsList = (props) => {
-  const pepes = props.contacts
+
+
+
   const contacts = props.contacts ? (props.contacts.map(contact => {
     return (
       <Contact name={contact.name} number={contact.number} />
     )
   })) : <p>No hay contactos</p>
 
+  const detail = props.contacts ? props.contacts[0] : null
+  console.log('PROPS', props.contacts)
 
-  console.log('PROPES', props.contacts)
+
+
+
 
   return (
     <div className='contacts-container'>
@@ -25,7 +27,7 @@ const contactsList = (props) => {
           {contacts}
         </div>
         <div className='contact-details'>
-
+          <ContactDetail contact={detail} />
         </div>
       </div>
 
