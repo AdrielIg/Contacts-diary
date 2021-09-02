@@ -156,6 +156,8 @@ h1 {
   min-height: 100%;
   width: 100%;
   z-index: 100;
+  background-color: #fff;
+  box-shadow: inset 10px 10px 30px #c0c0c0, inset -10px -10px 30px #ffffff;
 }
 
 /* --------------Contact */
@@ -171,17 +173,7 @@ h1 {
   height: 40px;
 }
 
-.contact-modal {
-  width: 2px;
-  height: 40px;
-  background: #fffefe;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -0.2rem;
-  display: none;
-}
-.contact-wrapper:hover::after {
+/* .contact-wrapper:hover::after {
   content: "";
   width: 27px;
   height: 27px;
@@ -206,7 +198,7 @@ h1 {
     width: 27px;
     height: 27px;
   }
-}
+} */
 
 .contact-wrapper h4 {
   font-size: 1.4rem;

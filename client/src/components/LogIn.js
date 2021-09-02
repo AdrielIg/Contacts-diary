@@ -1,6 +1,5 @@
 import FormLog from './FormLog'
 import Axios from 'axios'
-import { Link } from 'wouter'
 import { useState } from 'react'
 
 const LogIn = (props) => {
