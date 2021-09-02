@@ -140,36 +140,31 @@ h1 {
   display: flex;
   justify-content: center;
 
-  min-height: 90vh;
+  height: 90vh;
   align-items: stretch;
 }
 /* Contact cards */
 .contact-card {
-  min-height: 100%;
   width: 100%;
+  border-right: 1px solid black;
+  overflow-y: auto;
+  overflow-x: visible;
+  z-index: 200;
 }
 
 .contact-details {
   min-height: 100%;
   width: 100%;
-  border-left: 1px solid black;
+  z-index: 100;
 }
 
-/* Contact */
-/* .contact-wrapper {
-  display: flex;
-  justify-content: space-around;
-  border-bottom: 1px solid black;
-  padding: 0.5rem 2rem;
-  position: relative;
-  
-}
-*/
+/* --------------Contact */
 
 .contact-wrapper {
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid black;
+  /* border-right: 1px solid black; */
 
   padding: 0.5rem 2rem;
   position: relative;
@@ -193,11 +188,13 @@ h1 {
   background-color: #fffefe;
   border-bottom: 1px solid black;
   border-left: 1px solid black;
+
   position: absolute;
   top: 50%;
   transform: translateY(-50%) rotate(45deg);
   right: -1.4rem;
   animation: arrowAppear 0.3s forwards;
+  z-index: 400;
 }
 @keyframes arrowAppear {
   0% {
@@ -210,81 +207,6 @@ h1 {
     height: 27px;
   }
 }
-/* .contact-wrapper:hover::after {
-  content: "";
-  height: 20px;
-  background-color: #fffefe;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  position: absolute;
-  top: 50%;
-  transform: rotate(0deg);
-  right: 0rem;
-  animation: rotateDown 0.2s forwards;
-}
-
-.contact-wrapper:hover::before {
-  content: "";
-  height: 27.5px;
-  background-color: #fffefe;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  position: absolute;
-  top: -0.45rem;
-  transform: rotate(45deg);
-  right: 1rem;
-  animation: rotateUp 0.2s forwards;
-}
-
-@keyframes rotateUp {
-  0% {
-    content: "";
-    height: 20px;
-    background-color: #fffefe;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    position: absolute;
-    top: 50%;
-    transform: rotate(0deg);
-    right: 0rem;
-  }
-  100% {
-    content: "";
-    height: 27.5px;
-    background-color: #fffefe;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    position: absolute;
-    top: -0.45rem;
-    transform: rotate(45deg);
-    right: 1rem;
-  }
-}
-
-@keyframes rotateDown {
-  0% {
-    content: "";
-    height: 20px;
-    background-color: #fffefe;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    position: absolute;
-    top: 50%;
-    transform: rotate(0deg);
-    right: 0rem;
-  }
-  100% {
-    content: "";
-    height: 27px;
-    background-color: #fffefe;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    position: absolute;
-    top: 40%;
-    transform: rotate(-45deg);
-    right: 1rem;
-  }
-} */
 
 .contact-wrapper h4 {
   font-size: 1.4rem;
@@ -292,13 +214,30 @@ h1 {
 .contact-wrapper p {
   font-size: 1.2rem;
 }
-.contact-wrapper > img {
-  width: 3rem;
-  margin-right: 0.2rem;
+.contact-wrapper > i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+
+  font-size: 2.2rem;
+
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 6px 6px 12px #969696, -6px -6px 12px #ffffff;
+  cursor: pointer;
 }
 
 .detail-card {
   margin-top: 2rem;
+}
+
+/* If no contact selected */
+.detail-no-view {
+  font-size: 2.2rem;
+  margin-top: 2rem;
+  opacity: 0.7;
 }
 
 .detail-avatar {
@@ -338,4 +277,38 @@ h1 {
 }
 .fa-twitter-square {
   color: #1d9bf0;
+}
+
+/* ---- SCROLL BAR IN CONTACTS */
+
+.Content {
+  direction: ltr;
+}
+
+/*This cause the division content
+to be displayed from right to left */
+.Flipped {
+  direction: rtl;
+}
+
+/* Designing for scroll-bar */
+.contact-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.contact-card::-webkit-scrollbar-track {
+  background: gainsboro;
+  border-radius: 5px;
+}
+
+/* Handle */
+.contact-card::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.contact-card::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

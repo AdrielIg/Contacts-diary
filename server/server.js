@@ -9,6 +9,7 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const User = require('./model/user')
 
+
 const app = express()
 
 mongoose.connect("mongodb+srv://adriel:;Mermelada;1997@cluster0.afgyq.mongodb.net/contacts?retryWrites=true&w=majority", {
@@ -36,6 +37,23 @@ require('./lib/passportConfig')(passport)
 
 
 /* Routes */
+app.get('/login', (req, res) => {
+  try {
+    if (req.isAuthenticated()) {
+
+      const { username, contacts } = req.user
+      console.log(username)
+      res.send({ username, contacts })
+    }
+    else {
+      res.send('User not authorized')
+    }
+  }
+  catch (err) {
+    console.log(err)
+  }
+
+})
 app.post('/login', (req, res, next) => {
 
   passport.authenticate('local', (err, user, info) => {

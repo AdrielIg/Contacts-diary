@@ -1,41 +1,35 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Switch } from 'wouter'
 import './App.css';
 import Register from './components/Register'
 import LogIn from './components/LogIn'
 import Header from './components/Header'
 import ContactsList from './components/ContactsList'
+import Axios from 'axios'
 
 
-const mensajes = [{
-  contact: 'Batman',
-  datos: {
-    numero: 999123,
-    facebook: 'asdasd'
-  }
-},
-{
-  contact: 'Robin',
-  datos: {
-    numero: 33333,
-    facebook: 'batmann'
-  }
-}]
 
 
 function App() {
 
   const [user, setUser] = useState('')
   const [contactsList, setContactsList] = useState()
-  const [contact, setContact] = useState({})
+
+  useEffect(() => {
+    Axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:8080/login'
+    }).then(res => {
+      setUser(res.data.username)
+      setContactsList(res.data.contacts)
+    })
+  }, [])
 
 
   const getDataUser = async (usuario) => {
-
     setUser(usuario.data.user)
     setContactsList(usuario.data.contacts)
-
-
   }
 
 
