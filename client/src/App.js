@@ -15,6 +15,7 @@ function App() {
   const [user, setUser] = useState('')
   const [contactsList, setContactsList] = useState()
 
+
   useEffect(() => {
     Axios({
       method: 'GET',
@@ -29,11 +30,22 @@ function App() {
 
   const getDataUser = async (usuario) => {
     setUser(usuario.data.user)
+
     setContactsList(usuario.data.contacts)
   }
 
+  const addContactToList = async () => {
+    await Axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:8080/contacts'
+    }).then(res => {
+      setContactsList(res.data)
+    }).catch(err => console.log(err))
+  }
 
-  const isUserLogged = user ? <ContactsList contacts={contactsList} /> : <LogIn getUser={getDataUser} />
+
+  const isUserLogged = user ? <ContactsList addToContactList={addContactToList} contacts={contactsList} /> : <LogIn getUser={getDataUser} />
 
 
 

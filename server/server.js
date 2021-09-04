@@ -38,6 +38,7 @@ require('./lib/passportConfig')(passport)
 
 /* Routes */
 app.get('/login', (req, res) => {
+
   try {
     if (req.isAuthenticated()) {
 
@@ -108,9 +109,42 @@ app.get('/contact/:name', async (req, res) => {
 })
 
 app.get('/contacts', async (req, res) => {
-  const user = req.user.username
-  res.send('nice')
+  const contacts = req.user.contacts
+  res.send(contacts)
 
+})
+
+app.get('/contacts/:position', async (req, res) => {
+  try {
+    /* Get the last */
+    console.log(req.params.position)
+    const find = await User.findOne(
+      {
+        username: req.user.username
+      },
+      {
+        contacts: { $slice: ["$contacts", -1] }
+      }
+
+    );
+
+    res.send(find)
+  }
+  catch (err) {
+    console.log(err)
+  }
+
+
+
+})
+
+app.post('/save/contact', async (req, res) => {
+  const contact = req.body
+
+  const contactAdd = await User.findOneAndUpdate({ username: req.user.username }, { $push: { contacts: contact } })
+
+
+  res.send('Contact Adde Succesfully')
 })
 
 app.get('/logout', (req, res) => {

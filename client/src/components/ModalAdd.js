@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import InputAdd from './InputAdd'
+import { useState } from 'react'
+import Axios from 'axios'
 
 /* --------------Modal Style--------------- */
 const ModalWrapper = styled.div`
@@ -76,16 +78,42 @@ const ButtonWrapper = styled.div`
 
 
 const ModalAdd = (props) => {
+  const [name, setName] = useState('')
+  const [number, setNumber] = useState('')
+  const [avatar, setAvatar] = useState('')
+  const [linkedin, setLinkedin] = useState('')
+  const [facebook, setFacebook] = useState('')
+  const [twitter, setTwitter] = useState('')
 
-  console.log('modal', ModalWrapper.styledComponentId)
+
   const closeModalOnly = (e) => {
     const modal = e.target.className.split(' ')
+
     if (modal[0] === ModalWrapper.styledComponentId) {
       props.closeModal()
       return
     }
     return
 
+  }
+  const addContact = async (e) => {
+    e.preventDefault()
+    props.closeModal()
+    await Axios({
+      method: 'POST',
+      data: {
+        name: name,
+        number: number,
+        avatar: avatar,
+        linkedin: linkedin,
+        facebook: facebook,
+        twitter: twitter
+      },
+      withCredentials: true,
+      url: 'http://localhost:8080/save/contact'
+    }).catch(err => console.log(err))
+
+    props.addContactToList()
   }
 
   return (
@@ -94,13 +122,13 @@ const ModalAdd = (props) => {
         <WrapperIcon><Icon className="fas fa-times" onClick={e => props.closeModal(e)}></Icon></WrapperIcon>
 
         <TitleAdd>Add Contact</TitleAdd>
-        <Form>
-          <InputAdd type='text' id='contact-name' label='Name' name='name' require={true} />
-          <InputAdd type='number' id='contact-number' label='Phone' name='number' require={true} />
-          <InputAdd type='text' id='contact-avatar' label='Image' name='avatar' />
-          <InputAdd type='text' id='contact-linkedin' label='Linked In' name='linkedin' />
-          <InputAdd type='text' id='contact-facebook' label='Facebooks' name='facebook' />
-          <InputAdd type='text' id='contact-twitter' label='Twitter' name='twitter' />
+        <Form onSubmit={e => addContact(e)}>
+          <InputAdd onChangeHandler={e => setName(e.target.value)} type='text' id='contact-name' label='Name' name='name' require={true} />
+          <InputAdd onChangeHandler={e => setNumber(e.target.value)} type='number' id='contact-number' label='Phone' name='number' require={true} />
+          <InputAdd onChangeHandler={e => setAvatar(e.target.value)} type='text' id='contact-avatar' label='Avatar' name='avatar' />
+          <InputAdd onChangeHandler={e => setLinkedin(e.target.value)} type='text' id='contact-linkedin' label='Linked In' name='linkedin' />
+          <InputAdd onChangeHandler={e => setFacebook(e.target.value)} type='text' id='contact-facebook' label='Facebook' name='facebook' />
+          <InputAdd onChangeHandler={e => setTwitter(e.target.value)} type='text' id='contact-twitter' label='Twitter' name='twitter' />
           <ButtonWrapper>
             <CancelButton onClick={props.closeModal}>Cancel</CancelButton>
             <SendButton type='submit' value='Add Contact' />

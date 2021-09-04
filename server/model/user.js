@@ -5,7 +5,11 @@ const user = new mongoose.Schema({
   contacts: [
     {
       name: String,
-      phone: String
+      number: String,
+      avatar: String,
+      linkedin: String,
+      facebook: String,
+      twitter: String
     }
   ]
 })

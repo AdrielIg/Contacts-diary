@@ -8,6 +8,7 @@ const ContactsList = (props) => {
   const [contactInfo, setContactInfo] = useState()
   const [addContactModal, setAddContactModal] = useState(false)
 
+
   const getContactInfoHandler = async (e) => {
     const name = e.target.dataset.name
     const contactData = await props.contacts.filter(contact => contact.name === name)
@@ -37,7 +38,7 @@ const ContactsList = (props) => {
 
   return (
     <div className='contacts-container'>
-      {addContactModal && <ModalAdd closeModal={closeModalHandler} />}
+      {addContactModal && <ModalAdd addContactToList={props.addToContactList} closeModal={closeModalHandler} />}
       <h2>Contact List</h2>
       <div className='contacts-container-wrapper'>
         <a href='#title' onClick={openModalHandler}><i className="fas fa-plus"></i>Add Contact</a>
