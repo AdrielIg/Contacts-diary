@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Route, Switch } from 'wouter'
+import { ContactContext, ContactProvider } from './context/ContactContext'
 import './App.css';
 import Register from './components/Register'
 import LogIn from './components/LogIn'
@@ -14,8 +15,9 @@ function App() {
 
   const [user, setUser] = useState('')
   const [contactsList, setContactsList] = useState()
-
-
+  /*  const { contactss, setContactss } = useContext(ContactContext)
+   console.log(contactss)
+  */
   useEffect(() => {
     Axios({
       method: 'GET',
@@ -50,17 +52,21 @@ function App() {
 
 
   return (
-    <div className="App">
-      <Header />
-      <Switch>
-        <Route component={Register} path='/register' />
-        {/* <Route component={LogIn} path='/login' /> */}
-      </Switch>
-      {isUserLogged}
+    <ContactProvider>
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route component={Register} path='/register' />
+          {/* <Route component={LogIn} path='/login' /> */}
+        </Switch>
+
+        {isUserLogged}
 
 
 
-    </div>
+      </div>
+
+    </ContactProvider>
   );
 }
 

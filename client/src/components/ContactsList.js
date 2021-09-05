@@ -1,4 +1,5 @@
-import { useDebugValue, useState } from 'react'
+import { useContext, useState } from 'react'
+import { ContactContext } from '../context/ContactContext'
 import Contact from './Contact'
 import ContactDetail from './ContactDetail'
 import ModalAdd from './ModalAdd'
@@ -7,8 +8,8 @@ import ModalAdd from './ModalAdd'
 const ContactsList = (props) => {
   const [contactInfo, setContactInfo] = useState()
   const [addContactModal, setAddContactModal] = useState(false)
-
-
+  const { contactss } = useContext(ContactContext)
+  console.log('El context es', contactss)
   const getContactInfoHandler = async (e) => {
     const name = e.target.dataset.name
     const contactData = await props.contacts.filter(contact => contact.name === name)
@@ -16,6 +17,8 @@ const ContactsList = (props) => {
     setContactInfo(contactData[0])
 
   }
+
+
   const contacts = props.contacts ? (props.contacts.map(contact => {
     return (
       <Contact key={contact._id} name={contact.name} number={contact.number} getUserInfo={getContactInfoHandler} />
