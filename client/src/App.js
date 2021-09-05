@@ -18,7 +18,9 @@ function App() {
   /*  const { contactss, setContactss } = useContext(ContactContext)
    console.log(contactss)
   */
-  useEffect(() => {
+
+  /* Borrar, lo pase a login */
+  /* useEffect(() => {
     Axios({
       method: 'GET',
       withCredentials: true,
@@ -27,16 +29,16 @@ function App() {
       setUser(res.data.username)
       setContactsList(res.data.contacts)
     })
-  }, [])
+  }, []) */
 
-
-  const getDataUser = async (usuario) => {
+  /* Change to Login */
+  /* const getDataUser = async (usuario) => {
     setUser(usuario.data.user)
 
     setContactsList(usuario.data.contacts)
-  }
-
-  const addContactToList = async () => {
+  } */
+  /* BORRAR YA QUE LO USO EN ModalAdd */
+  /* const addContactToList = async () => {
     await Axios({
       method: 'GET',
       withCredentials: true,
@@ -44,10 +46,10 @@ function App() {
     }).then(res => {
       setContactsList(res.data)
     }).catch(err => console.log(err))
-  }
+  } */
 
 
-  const isUserLogged = user ? <ContactsList addToContactList={addContactToList} contacts={contactsList} /> : <LogIn getUser={getDataUser} />
+  const isUserLogged = user ? <ContactsList contacts={contactsList} /> : <LogIn setUser={setUser} />
 
 
 

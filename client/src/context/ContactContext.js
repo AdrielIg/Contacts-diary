@@ -6,11 +6,11 @@ export const ContactContext = createContext()
 
 export const ContactProvider = ({ children }) => {
 
-  const [contactss, setContactss] = useState('skere')
+  const [contacts, setContacts] = useState([])
   return (
     <ContactContext.Provider value={{
-      contactss,
-      setContactss
+      contacts,
+      setContacts
     }}>
       {children}
     </ContactContext.Provider>

@@ -8,18 +8,18 @@ import ModalAdd from './ModalAdd'
 const ContactsList = (props) => {
   const [contactInfo, setContactInfo] = useState()
   const [addContactModal, setAddContactModal] = useState(false)
-  const { contactss } = useContext(ContactContext)
-  console.log('El context es', contactss)
+  const { contacts } = useContext(ContactContext)
+  console.log('El context es', contacts)
   const getContactInfoHandler = async (e) => {
     const name = e.target.dataset.name
-    const contactData = await props.contacts.filter(contact => contact.name === name)
+    const contactData = await contacts.filter(contact => contact.name === name)
     /* The first an unique object of the array */
     setContactInfo(contactData[0])
 
   }
 
 
-  const contacts = props.contacts ? (props.contacts.map(contact => {
+  const contactList = contacts ? (contacts.map(contact => {
     return (
       <Contact key={contact._id} name={contact.name} number={contact.number} getUserInfo={getContactInfoHandler} />
     )
@@ -41,14 +41,14 @@ const ContactsList = (props) => {
 
   return (
     <div className='contacts-container'>
-      {addContactModal && <ModalAdd addContactToList={props.addToContactList} closeModal={closeModalHandler} />}
+      {addContactModal && <ModalAdd closeModal={closeModalHandler} />}
       <h2>Contact List</h2>
       <div className='contacts-container-wrapper'>
         <a href='#title' onClick={openModalHandler}><i className="fas fa-plus"></i>Add Contact</a>
       </div>
       <div className='contact-list-wrapper'>
         <div className='contact-card Container Flipped'>
-          {contacts}
+          {contactList}
 
 
           <div className='relleno'></div>

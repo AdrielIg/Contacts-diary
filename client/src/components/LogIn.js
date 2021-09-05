@@ -1,10 +1,23 @@
 import FormLog from './FormLog'
 import Axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { ContactContext } from '../context/ContactContext'
 
 const LogIn = (props) => {
   const [loginUsername, setLoginUsername] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
+  const { contacs, setContacts } = useContext(ContactContext)
+
+  useEffect(() => {
+    Axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:8080/login'
+    }).then(res => {
+      props.setUser(res.data.username)
+      setContacts(res.data.contacts)
+    })
+  }, [])
 
   const onLogin = async (e) => {
     e.preventDefault()
@@ -16,7 +29,13 @@ const LogIn = (props) => {
       },
       withCredentials: true,
       url: 'http://localhost:8080/login'
-    }).then(res => props.getUser(res))
+    }).then(res => getDataUser(res))
+  }
+
+  const getDataUser = async (usuario) => {
+    props.setUser(usuario.data.user)
+
+    setContacts(usuario.data.contacts)
   }
 
 

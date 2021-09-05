@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import InputAdd from './InputAdd'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Axios from 'axios'
+import { ContactContext } from '../context/ContactContext'
 
 /* --------------Modal Style--------------- */
 const ModalWrapper = styled.div`
@@ -84,6 +85,18 @@ const ModalAdd = (props) => {
   const [linkedin, setLinkedin] = useState('')
   const [facebook, setFacebook] = useState('')
   const [twitter, setTwitter] = useState('')
+  const { setContacts } = useContext(ContactContext)
+
+  /* Get all contacts to rerender de contactList with the new contact */
+  const addContactToList = async () => {
+    await Axios({
+      method: 'GET',
+      withCredentials: true,
+      url: 'http://localhost:8080/contacts'
+    }).then(res => {
+      setContacts(res.data)
+    }).catch(err => console.log(err))
+  }
 
 
   const closeModalOnly = (e) => {
@@ -113,7 +126,7 @@ const ModalAdd = (props) => {
       url: 'http://localhost:8080/save/contact'
     }).catch(err => console.log(err))
 
-    props.addContactToList()
+    addContactToList()
   }
 
   return (
