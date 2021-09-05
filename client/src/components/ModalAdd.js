@@ -16,6 +16,7 @@ z-index: 1000;
 display:flex;
 align-items:center;
 justify-content:center;
+transition: all 4s ease;
 `
 const FormWrapper = styled.div`
 min-height:30vh;
@@ -112,6 +113,7 @@ const ModalAdd = (props) => {
   const addContact = async (e) => {
     e.preventDefault()
     props.closeModal()
+    /* Add contact to database */
     await Axios({
       method: 'POST',
       data: {
@@ -125,7 +127,7 @@ const ModalAdd = (props) => {
       withCredentials: true,
       url: 'http://localhost:8080/save/contact'
     }).catch(err => console.log(err))
-
+    /* Get contacts from db */
     addContactToList()
   }
 
@@ -138,7 +140,7 @@ const ModalAdd = (props) => {
         <Form onSubmit={e => addContact(e)}>
           <InputAdd onChangeHandler={e => setName(e.target.value)} type='text' id='contact-name' label='Name' name='name' require={true} />
           <InputAdd onChangeHandler={e => setNumber(e.target.value)} type='number' id='contact-number' label='Phone' name='number' require={true} />
-          <InputAdd onChangeHandler={e => setAvatar(e.target.value)} type='text' id='contact-avatar' label='Avatar' name='avatar' />
+          <InputAdd onChangeHandler={e => setAvatar(e.target.value)} type='url' id='contact-avatar' label='Avatar' name='avatar' />
           <InputAdd onChangeHandler={e => setLinkedin(e.target.value)} type='text' id='contact-linkedin' label='Linked In' name='linkedin' />
           <InputAdd onChangeHandler={e => setFacebook(e.target.value)} type='text' id='contact-facebook' label='Facebook' name='facebook' />
           <InputAdd onChangeHandler={e => setTwitter(e.target.value)} type='text' id='contact-twitter' label='Twitter' name='twitter' />

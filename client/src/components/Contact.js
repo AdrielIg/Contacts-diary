@@ -1,14 +1,3 @@
-import { useState } from 'react'
-import styled from 'styled-components'
-
-
-/* --------------Header Style--------------- */
-
-const colore = 'red'
-/* border - radius: 50px;
-background: #e0e0e0;
-box - shadow: inset 20px 20px 60px #bebebe,
-  inset - 20px - 20px 60px #ffffff; */
 
 const Contact = (props) => {
 
@@ -19,7 +8,7 @@ const Contact = (props) => {
     const abuelo = Array.from(contactCard.parentElement.children)
     abuelo.forEach(element => {
       element.style.boxShadow = 'none'
-      if (element.className != 'relleno') {
+      if (element.className !== 'relleno') {
         element.children[1].style.boxShadow = '6px 6px 12px #969696, -6px -6px 12px #ffffff'
       }
     });
@@ -38,6 +27,9 @@ const Contact = (props) => {
         <p>{props.number}</p>
       </div>
       <i className="fas fa-chevron-right" data-name={props.name} onClick={(e) => onSelectContact(e)} ></i>
+
+
+
 
     </div>
   )

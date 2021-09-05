@@ -189,12 +189,16 @@ h1 {
 .contact-wrapper {
   display: flex;
   justify-content: space-around;
+  align-items: center;
   border-bottom: 1px solid black;
-  /* border-right: 1px solid black; */
 
-  padding: 0.5rem 2rem;
+  padding: 0;
   position: relative;
   height: 40px;
+}
+
+.contact-wrapper > div {
+  width: 60%;
 }
 
 /* .contact-wrapper:hover::after {
@@ -258,6 +262,7 @@ h1 {
 
 .detail-avatar {
   width: 10rem;
+  height: 10rem;
   border-radius: 50%;
 }
 .detail-icon {

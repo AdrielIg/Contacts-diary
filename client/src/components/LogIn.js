@@ -6,7 +6,7 @@ import { ContactContext } from '../context/ContactContext'
 const LogIn = (props) => {
   const [loginUsername, setLoginUsername] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
-  const { contacs, setContacts } = useContext(ContactContext)
+  const { setContacts } = useContext(ContactContext)
 
   useEffect(() => {
     Axios({

@@ -1,7 +1,6 @@
 import FormLog from './FormLog'
 import Axios from 'axios'
 import { useState } from 'react'
-import { Link } from 'wouter'
 
 const Register = () => {
   const [registerUsername, setRegisterUsername] = useState('')
