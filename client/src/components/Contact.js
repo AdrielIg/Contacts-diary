@@ -1,5 +1,9 @@
+import { useContext } from "react"
+import { ContactContext } from "../context/ContactContext"
 
 const Contact = (props) => {
+
+  const { setIsDeleted } = useContext(ContactContext)
 
   const onSelectContact = (e) => {
     props.getUserInfo(e)
@@ -16,6 +20,8 @@ const Contact = (props) => {
     arrow.style.boxShadow = 'inset 3px 3px 4px #7b7b7b, inset -3px -3px 4px #ffffff'
     contactCard.style.backgroundColor = '#fff'
     contactCard.style.boxShadow = 'inset 10px 10px 30px #7b7b7b, inset -10px -10px 30px #ffffff'
+
+    setIsDeleted(false)
 
   }
 

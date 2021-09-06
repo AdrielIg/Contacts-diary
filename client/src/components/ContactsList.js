@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 /* Contect */
 import { ContactContext } from '../context/ContactContext'
 /* Components */
@@ -13,6 +13,11 @@ const ContactsList = () => {
   /* Boolean to close and open form to add contact */
   const [addContactModal, setAddContactModal] = useState(false)
   const { contacts } = useContext(ContactContext)
+
+  /* Quit details of the deleted contacts in "ContactDetails.js" */
+  useEffect(() => {
+    setContactInfo('')
+  }, [contacts])
 
   const getContactInfoHandler = async (e) => {
     /* Get the contact selected */

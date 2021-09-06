@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import Axios from 'axios'
 import { ContactContext } from '../context/ContactContext'
 
+
 /* --------------Modal Style--------------- */
 const ModalWrapper = styled.div`
 background-color: rgba(0,0,0,0.7);

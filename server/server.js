@@ -147,6 +147,20 @@ app.post('/save/contact', async (req, res) => {
   res.send('Contact Adde Succesfully')
 })
 
+app.delete('/contact/:id', async (req, res) => {
+  console.log('EL BODY ES:', req.params.id)
+  console.log('EL USER ESSS:', req.user.username)
+  const idUser = req.params.id
+  const deleted = await User.findOneAndUpdate(
+    { username: req.user.username },
+    { $pull: { contacts: { _id: idUser } } }
+  )
+
+
+  console.log(deleted)
+  res.send('eliminado')
+})
+
 app.get('/logout', (req, res) => {
   req.logOut()
   console.log('el usuario desconectado es:', req.user)
