@@ -29,12 +29,12 @@ const ContactsList = () => {
   }
 
 
-  const contactList = contacts ? (contacts.map(contact => {
+  const contactList = contacts.length > 0 ? (contacts.map(contact => {
     /* Render each contact */
     return (
       <Contact key={contact._id} name={contact.name} number={contact.number} getUserInfo={getContactInfoHandler} />
     )
-  })) : <p>No hay contactos</p>
+  })) : <h2>Add some contacts...</h2>
 
   const openModalHandler = () => {
     setAddContactModal(true)
