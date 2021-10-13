@@ -6,7 +6,6 @@ const passportLocal = require('passport-local').Strategy
 const cookieParser = require('cookie-parser')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
-const bodyParser = require('body-parser')
 const User = require('./model/user')
 
 
@@ -59,11 +58,11 @@ app.post('/login', (req, res, next) => {
 
   passport.authenticate('local', (err, user, info) => {
     if (err) throw err
-    if (!user) res.send('User not exist')
+    if (!user) res.send({ err: 1, message: 'User not found' })
     else {
       req.logIn(user, err => {
         if (err) throw err
-        res.send({ message: 'User Log In successfully!', user: req.user.username, contacts: req.user.contacts })
+        res.send({ message: 'User Log In successfully!', username: req.user.username, contacts: req.user.contacts })
       })
     }
   })(req, res, next)
