@@ -44,7 +44,7 @@ export const LoginScreen = () => {
             type="text"
             className="form-control"
             id="password"
-            placeholder="Your user..."
+            placeholder="Your password..."
             value={password}
             onChange={handleInputChange}
           />

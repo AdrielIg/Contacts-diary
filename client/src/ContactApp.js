@@ -2,12 +2,12 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 
-import { LoginScreen } from './components/auth/LoginScreen'
+import { AppRouter } from './routers/AppRouter'
 
 export const ContactApp = () => {
   return (
     <Provider store={store}>
-      <LoginScreen />
+      <AppRouter />
 
     </Provider>
   )

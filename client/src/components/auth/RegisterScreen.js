@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { startLoginUserPassword } from '../../actions/auth';
+import { startRegisterUserPassword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm'
 import { FormContainer, Main, ButtonsContainer } from './stylesAuth/stylesAuth'
 
@@ -42,7 +42,7 @@ export const RegisterScreen = () => {
             type="text"
             className="form-control"
             id="password"
-            placeholder="Your user..."
+            placeholder="Your password..."
             value={password}
             onChange={handleInputChange}
           />
