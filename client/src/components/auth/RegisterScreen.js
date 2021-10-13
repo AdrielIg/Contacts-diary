@@ -5,28 +5,26 @@ import { startLoginUserPassword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm'
 import { FormContainer, Main, ButtonsContainer } from './stylesAuth/stylesAuth'
 
-export const LoginScreen = () => {
+export const RegisterScreen = () => {
 
   const dispatch = useDispatch()
-  const state = useSelector(state => state)
-  console.log(state)
 
 
-  const [formValues, handleInputChange] = useForm({ username: 'test', password: 'test' })
+
+  const [formValues, handleInputChange] = useForm({ username: '', password: '' })
 
   const { username, password } = formValues
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(startLoginUserPassword(username, password))
-
+    dispatch(startRegisterUserPassword(username, password))
 
   }
 
   return (
     <Main>
-      <FormContainer className='text-center' onSubmit={handleLogin}>
-        <h2 className='mb-5'>Login</h2>
+      <FormContainer className='text-center' onSubmit={handleRegister}>
+        <h2 className='mb-5'>Register</h2>
         <div className="mb-3">
           <label htmlFor="username" className="form-label mb-2">Username:</label>
           <input
@@ -50,8 +48,8 @@ export const LoginScreen = () => {
           />
         </div>
         <ButtonsContainer className='mt-5'>
-          <button className='btn btn-primary'>Go to Register</button>
-          <button type='submit' className='btn btn-primary'>Login</button>
+          <button className='btn btn-primary'>Go to Login</button>
+          <button type='submit' className='btn btn-primary'>Register</button>
         </ButtonsContainer>
 
 

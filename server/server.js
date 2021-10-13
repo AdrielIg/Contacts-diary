@@ -75,7 +75,7 @@ app.post('/login', (req, res, next) => {
 app.post('/register', (req, res) => {
   User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err
-    if (doc) res.send('User already exist')
+    if (doc) res.send({ message: 'User already exist' })
     if (!doc) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10)
       const newUser = new User({
@@ -83,11 +83,13 @@ app.post('/register', (req, res) => {
         password: hashedPassword
       })
       await newUser.save()
-      res.send('User Created')
+      res.send({ message: 'User created', username: req.body.username })
     }
   })
   console.log('User Registered!!!', req.body)
 })
+
+
 app.get('/user', (req, res) => {
   if (req.isAuthenticated()) {
     res.send({ message: 'Nice', username: req.user.username })
