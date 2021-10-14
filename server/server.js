@@ -140,13 +140,26 @@ app.get('/contacts/:position', async (req, res) => {
 
 })
 
-app.post('/save/contact', async (req, res) => {
-  const contact = req.body
+app.post('/save', async (req, res) => {
+  try {
+    const contact = req.body
 
-  const contactAdd = await User.findOneAndUpdate({ username: req.user.username }, { $push: { contacts: contact } })
+    await User.findOneAndUpdate({ username: req.user.username }, { $push: { contacts: contact } })
+    const { contacts } = await User.findOne(
+      {
+        username: req.user.username
+      },
+      {
+        contacts: { $slice: ["$contacts", -1] }
+      }
 
+    );
 
-  res.send('Contact Adde Succesfully')
+    res.send({ message: 'Contact Adde Succesfully', contact: contacts[0] })
+  } catch (err) {
+    console.log(err)
+  }
+
 })
 
 app.delete('/contact/:id', async (req, res) => {

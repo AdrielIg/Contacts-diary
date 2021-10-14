@@ -4,23 +4,26 @@ import Axios from 'axios'
 
 
 import { logout, startLogout } from '../../actions/auth'
+import { startAddContact } from '../../actions/contacts'
+import { ContactHeader } from './ContactHeader'
+import { ContactList } from './ContactList'
 
 export const ContactScreen = () => {
 
   const dispatch = useDispatch()
 
-
-
-
-  const handleLogout = (e) => {
-    dispatch(startLogout())
-    console.log('hola')
+  const handleAddContact = () => {
+    dispatch(startAddContact())
   }
 
+
+
+
   return (
-    <div>
-      <h1>Rey</h1>
-      <button onClick={handleLogout}>logOut</button>
-    </div>
+    <>
+      <ContactHeader />
+      <ContactList />
+
+    </>
   )
 }
