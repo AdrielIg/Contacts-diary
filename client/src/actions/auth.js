@@ -18,7 +18,7 @@ export const startLoginUserPassword = (username, password) => {
         console.log('startLoginUserPassword ', response)
         const { username, contacts, message } = response.data
         dispatch(login(username))
-        dispatch(setContacts(contacts))
+
         console.log('CONTACTS', contacts)
       }).catch(err => {
         console.log(err)

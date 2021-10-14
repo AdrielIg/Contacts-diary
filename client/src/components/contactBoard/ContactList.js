@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { startAddContact } from '../../actions/contacts'
 import { ContactDetail } from './ContactDetail'
 import { Contacts } from './Contacts'
 import { ContactDetailWrapper } from './contactStyles/contactDetailStyles'
@@ -10,10 +11,15 @@ export const ContactList = () => {
 
   const [contactInfo, setContactInfo] = useState({})
   const contacts = useSelector(state => state.contacts)
+  const dispatch = useDispatch()
+  console.log('ContacT iNFO', contactInfo)
 
   const handlerContactDetails = async (id) => {
     const contactFound = await contacts.find(contact => contact._id === id)
     setContactInfo(contactFound)
+  }
+  const handleAddContact = () => {
+    dispatch(startAddContact())
   }
 
   return (
@@ -23,7 +29,7 @@ export const ContactList = () => {
           <h3>
             Contact List
           </h3>
-          <button className='btn btn-success '>
+          <button className='btn btn-success ' onClick={handleAddContact}>
             Add Contact
           </button>
           <hr />
@@ -31,7 +37,9 @@ export const ContactList = () => {
         <Divider>
           {/* Contacts Items */}
           <Contacts handlerContactInfo={handlerContactDetails} />
-          <ContactDetail contactInfo={contactInfo} />
+
+          <ContactDetail contactInfo={contactInfo} handleSetContactInfo={setContactInfo} />
+
         </Divider>
       </ContactListWrapper>
     </Main>

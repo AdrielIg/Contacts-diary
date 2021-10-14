@@ -4,7 +4,7 @@ import Axios from 'axios'
 
 
 import { logout, startLogout } from '../../actions/auth'
-import { setContacts, startAddContact } from '../../actions/contacts'
+import { setContacts, startAddContact, startGetContacts } from '../../actions/contacts'
 import { ContactHeader } from './ContactHeader'
 import { ContactList } from './ContactList'
 import { loadFromLocalStorage } from '../../helpers/localStorageHelper'
@@ -14,7 +14,8 @@ export const ContactScreen = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setContacts(loadFromLocalStorage('contacts')))
+    // dispatch(setContacts(loadFromLocalStorage('contacts')))
+    dispatch(startGetContacts())
   }, [])
 
 

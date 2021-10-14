@@ -12,3 +12,9 @@ width: 7rem;
 height: 7rem;
 border-radius:50%;
 `
+export const TitleContainer = styled.div`
+width: 60%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+`

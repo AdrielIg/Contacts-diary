@@ -173,7 +173,7 @@ app.delete('/contact/:id', async (req, res) => {
 
 
   console.log(deleted)
-  res.send('eliminado')
+  res.send({ message: 'Contact Deleted' })
 })
 
 app.get('/logout', (req, res) => {

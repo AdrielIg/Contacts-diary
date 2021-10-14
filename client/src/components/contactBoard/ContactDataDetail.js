@@ -1,14 +1,14 @@
 import React from 'react'
-import { DataWrapper } from './contactStyles/contactDataStyles'
+import { Data, DataWrapper, Icon, DataContainer } from './contactStyles/contactDataStyles'
 
 export const ContactDataDetail = ({ icon, data }) => {
   return (
-    <div>
+    <DataContainer className='mt-2'>
       <DataWrapper>
-        <i className={icon}></i>
-        <p>{data}</p>
+        <Icon className={icon}></Icon>
+        <Data>{data}</Data>
       </DataWrapper>
-      <hr />
-    </div>
+
+    </DataContainer>
   )
 }
