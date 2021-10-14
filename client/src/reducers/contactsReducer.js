@@ -16,19 +16,19 @@ import { types } from "../types/types";
 export const contactsReducer = (state = [], action) => {
   switch (action.type) {
     case types.setContacts:
-      return [...action.payload.contact]
+      return [...action.payload]
 
     case types.addContact:
-      return [...state, action.payload.contact]
+      return [...state, action.payload]
 
     case types.removeContact:
-      const idDeleted = action.payload.contact.id
-      const contactsFiltered = state.filter(contact => contact.id !== idDeleted)
+      const idDeleted = action.payload._id
+      const contactsFiltered = state.filter(contact => contact._id !== idDeleted)
       return [...contactsFiltered]
 
     case types.editContact:
-      const contactEdited = action.payload.contact
-      const contactFound = state.find(contact => contact.id = contactEdited.id)
+      const contactEdited = action.payload
+      const contactFound = state.find(contact => contact._id = contactEdited._id)
       contactFound = contactEdited
       return [...state]
 

@@ -19,6 +19,7 @@ export const ContactList = () => {
         <Divider>
           {/* Contacts Items */}
           <Contacts />
+          <Contacts />
         </Divider>
       </ContactListWrapper>
     </Main>

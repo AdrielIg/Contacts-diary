@@ -34,3 +34,10 @@ export const addContact = (contact) => {
   }
 
 }
+
+export const setContacts = (contactsArray) => {
+  return {
+    type: types.setContacts,
+    payload: contactsArray
+  }
+}

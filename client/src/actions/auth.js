@@ -1,5 +1,6 @@
 import { types } from "../types/types";
 import Axios from 'axios'
+import { setContacts } from './contacts'
 
 // Async login
 export const startLoginUserPassword = (username, password) => {
@@ -17,8 +18,7 @@ export const startLoginUserPassword = (username, password) => {
         console.log('startLoginUserPassword ', response)
         const { username, contacts, message } = response.data
         dispatch(login(username))
-
-
+        dispatch(setContacts(contacts))
       }).catch(err => {
         console.log(err)
       })
