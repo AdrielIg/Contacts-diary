@@ -5,21 +5,19 @@ import { startLoginUserPassword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm'
 import { FormContainer, Main, ButtonsContainer } from './stylesAuth/stylesAuth'
 
-export const LoginScreen = () => {
+export const LoginScreen = (props) => {
 
   const dispatch = useDispatch()
-  const state = useSelector(state => state)
-  console.log(state)
 
 
   const [formValues, handleInputChange] = useForm({ username: 'test', password: 'test' })
 
   const { username, password } = formValues
+  console.log('PROPS', props)
 
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(startLoginUserPassword(username, password))
-
 
   }
 
@@ -50,7 +48,7 @@ export const LoginScreen = () => {
           />
         </div>
         <ButtonsContainer className='mt-5'>
-          <button className='btn btn-primary'>Go to Register</button>
+          <a href='/auth/register' className='btn btn-primary'>Go to Register</a>
           <button type='submit' className='btn btn-primary'>Login</button>
         </ButtonsContainer>
 

@@ -91,13 +91,14 @@ app.post('/register', (req, res) => {
 
 
 app.get('/user', (req, res) => {
+  console.log('/user', req.user)
   if (req.isAuthenticated()) {
-    res.send({ message: 'Nice', username: req.user.username })
+    console.log(req.user)
+    res.send({ message: 'Is Logged In', username: req.user.username })
   }
   else {
-    res.send('La concha ddel mono')
+    res.send({ message: 'No user connected' })
   }
-  console.log('ESTOY EN USER', req.user)
 })
 
 app.get('/contact/:name', async (req, res) => {
@@ -163,8 +164,8 @@ app.delete('/contact/:id', async (req, res) => {
 })
 
 app.get('/logout', (req, res) => {
-  req.logOut()
   console.log('el usuario desconectado es:', req.user)
+  req.logOut()
   res.send('Desconectado correctamente')
 })
 

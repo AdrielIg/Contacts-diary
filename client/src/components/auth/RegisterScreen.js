@@ -48,7 +48,7 @@ export const RegisterScreen = () => {
           />
         </div>
         <ButtonsContainer className='mt-5'>
-          <button className='btn btn-primary'>Go to Login</button>
+          <a href='/auth/login' className='btn btn-primary'>Go to Login</a>
           <button type='submit' className='btn btn-primary'>Register</button>
         </ButtonsContainer>
 
