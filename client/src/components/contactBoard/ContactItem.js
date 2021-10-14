@@ -3,21 +3,18 @@ import { useSelector } from 'react-redux'
 import { Avatar, AvatarWrapper } from './contactStyles/contactItemStyles'
 import { ContactWrapper } from './contactStyles/contactItemStyles'
 
-export const ContactItem = ({ avatar, name, _id }) => {
+export const ContactItem = ({ avatar, name, _id, handlerContactInfo }) => {
 
-  const contacts = useSelector(state => state.contacts)
-
-  console.log('LSO CONTACTOS', contacts)
 
 
   return (
     <>
-      <ContactWrapper className='px-3'>
+      <ContactWrapper key={_id} className='px-3'>
         <AvatarWrapper className='text-center'>
           <Avatar src={avatar} alt={`${name} profile`} />
           <h4 className='mx-3'>{name}</h4>
         </AvatarWrapper>
-        <button className='btn btn-info' >See more</button>
+        <button className='btn btn-info' onClick={() => handlerContactInfo(_id)} >See more</button>
 
       </ContactWrapper>
       <hr />
