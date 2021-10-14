@@ -1,5 +1,6 @@
 import React from 'react'
 import { Contacts } from './Contacts'
+import { ContactDetailWrapper } from './contactStyles/contactDetailStyles'
 import { ContactListWrapper, Divider, Main } from './contactStyles/contactStyles'
 
 
@@ -19,7 +20,7 @@ export const ContactList = () => {
         <Divider>
           {/* Contacts Items */}
           <Contacts />
-          <Contacts />
+          <ContactDetailWrapper />
         </Divider>
       </ContactListWrapper>
     </Main>

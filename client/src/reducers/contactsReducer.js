@@ -1,3 +1,4 @@
+import { loadFromLocalStorage, saveToLocalStorage } from "../helpers/localStorageHelper";
 import { types } from "../types/types";
 
 /* 
@@ -13,9 +14,12 @@ import { types } from "../types/types";
   }
 ]
 */
+
+
 export const contactsReducer = (state = [], action) => {
   switch (action.type) {
     case types.setContacts:
+      saveToLocalStorage('contacts', action.payload)
       return [...action.payload]
 
     case types.addContact:
